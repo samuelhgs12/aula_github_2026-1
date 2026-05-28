@@ -24,7 +24,7 @@ public class Main {
 					}
                 if (op == 3) {
 					consultarSaldo();
-				}
+					}
             }
         }
 
