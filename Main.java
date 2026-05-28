@@ -8,5 +8,4 @@ public class Main {
 		System.out.println("Voce selecionou a funcionalidade " + mainMenu.getOption(selection) + ".");
 		System.out.println("Fim");
 	}
-
 }

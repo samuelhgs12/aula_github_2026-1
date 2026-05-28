@@ -43,7 +43,6 @@ public class Menu {
 				System.out.println("Opcao errada!");
 				op=0;
 			}
-
 		}
 		return op;
 	}
