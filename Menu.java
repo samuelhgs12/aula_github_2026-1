@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,30 +18,70 @@ public class Menu {
 		this.options = options;
 	}
 
+	public String getOption(int selection) {
+		return options.get(selection - 1);
+	}
+
+	private void exibirMenu() {
+		int largura = 36;
+		String separador = "=".repeat(largura);
+		String titulo = title.toUpperCase();
+		int espacos = (largura - titulo.length()) / 2;
+		String tituloCentralizado = " ".repeat(Math.max(0, espacos)) + titulo;
+
+		System.out.println("\n" + separador);
+		System.out.println(tituloCentralizado);
+		System.out.println(separador);
+
+		int i = 1;
+		for (String option : options) {
+			System.out.println("  " + i++ + ". " + option);
+		}
+
+		System.out.println(separador);
+		System.out.print("  Opcao: ");
+	}
+
 	public int getSelection() {
-		int op = 0;
-		while (op==0){
-			System.out.println(title+"\n");
-			int i=1;
-			for (String option : options) {
-				System.out.println(i++ + " - " + option);
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			exibirMenu();
+
+			String str = scanner.nextLine().trim();
+			if (str.isEmpty()) {
+				System.out.println("\n  [!] Entrada vazia. Digite o numero de uma opcao.");
+				continue;
 			}
 
-			System.out.println("Informe a opcao desejada. ");
-			Scanner s = new Scanner(System.in);
-			String str = s.nextLine();
+			int op;
 			try {
 				op = Integer.parseInt(str);
-			}
-			catch (NumberFormatException e) {
-				op =0;
-			}
-			if (op>=i){
-				System.out.println("Opcao errada!");
-				op=0;
+			} catch (NumberFormatException e) {
+				System.out.println("\n  [!] Entrada invalida. Digite apenas o numero da opcao.");
+				continue;
 			}
 
+			if (op < 0) {
+				System.out.println("\n  [!] Numeros negativos nao sao permitidos. Escolha uma opcao a partir de 1.");
+				continue;
+			}
+
+			if (op < 1) {
+				System.out.println("\n  [!] Opcao invalida. Escolha uma opcao a partir de 1.");
+				continue;
+			}
+
+			if (op >= options.size() + 1) {
+				System.out.println("\n  [!] Opcao invalida. Escolha um numero entre 1 e " + options.size() + ".");
+				continue;
+			}
+
+			if (options.get(op - 1).equals("Conta")) {
+				Menu contaMenu = new Menu("Conta", Arrays.asList("Abrir Conta", "Encerrar Conta", "Consultar Conta"));
+				op = contaMenu.getSelection();
+			}
+
+			return op;
 		}
-		return op;
 	}
 }
