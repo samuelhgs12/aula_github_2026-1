@@ -18,6 +18,10 @@ public class Menu {
 		this.options = options;
 	}
 
+	public String getOption(int selection) {
+		return options.get(selection - 1);
+	}
+
 	public int getSelection() {
 		int op = 0;
 		while (op==0){
@@ -44,7 +48,6 @@ public class Menu {
 				Menu contaMenu = new Menu("Conta", Arrays.asList("Abrir Conta", "Encerrar Conta", "Consultar Conta"));
 				op = contaMenu.getSelection();
 			}
-
 		}
 		return op;
 	}
