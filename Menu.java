@@ -23,8 +23,8 @@ public class Menu {
 	}
 
 	public int getSelection() {
-		int op = 0;
-		while (op==0){
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
 			System.out.println(title+"\n");
 			int i=1;
 			for (String option : options) {
@@ -32,23 +32,32 @@ public class Menu {
 			}
 
 			System.out.println("Informe a opcao desejada. ");
-			Scanner s = new Scanner(System.in);
-			String str = s.nextLine();
+			String str = scanner.nextLine().trim();
+			if (str.isEmpty()) {
+				System.out.println("Entrada vazia. Digite o numero de uma opcao.");
+				continue;
+			}
+
+			int op;
 			try {
 				op = Integer.parseInt(str);
 			}
 			catch (NumberFormatException e) {
-				op =0;
+				System.out.println("Entrada invalida. Digite apenas o numero da opcao.");
+				continue;
 			}
-			if (op>=i){
-				System.out.println("Opcao errada!");
-				op=0; 
+
+			if (op < 1 || op >= i) {
+				System.out.println("Opcao invalida. Escolha um numero entre 1 e " + options.size() + ".");
+				continue;
 			}
-			else if (options.get(op - 1).equals("Conta")) {
+
+			if (options.get(op - 1).equals("Conta")) {
 				Menu contaMenu = new Menu("Conta", Arrays.asList("Abrir Conta", "Encerrar Conta", "Consultar Conta"));
 				op = contaMenu.getSelection();
 			}
+
+			return op;
 		}
-		return op;
 	}
 }
