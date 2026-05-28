@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,7 +42,11 @@ public class Menu {
 			}
 			if (op>=i){
 				System.out.println("Opcao errada!");
-				op=0;
+				op=0; 
+			}
+			else if (options.get(op - 1).equals("Conta")) {
+				Menu contaMenu = new Menu("Conta", Arrays.asList("Abrir Conta", "Encerrar Conta", "Consultar Conta"));
+				op = contaMenu.getSelection();
 			}
 		}
 		return op;
