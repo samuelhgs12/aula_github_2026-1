@@ -22,33 +22,47 @@ public class Menu {
 		return options.get(selection - 1);
 	}
 
+	private void exibirMenu() {
+		int largura = 36;
+		String separador = "=".repeat(largura);
+		String titulo = title.toUpperCase();
+		int espacos = (largura - titulo.length()) / 2;
+		String tituloCentralizado = " ".repeat(Math.max(0, espacos)) + titulo;
+
+		System.out.println("\n" + separador);
+		System.out.println(tituloCentralizado);
+		System.out.println(separador);
+
+		int i = 1;
+		for (String option : options) {
+			System.out.println("  " + i++ + ". " + option);
+		}
+
+		System.out.println(separador);
+		System.out.print("  Opcao: ");
+	}
+
 	public int getSelection() {
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println(title+"\n");
-			int i=1;
-			for (String option : options) {
-				System.out.println(i++ + " - " + option);
-			}
+			exibirMenu();
 
-			System.out.println("Informe a opcao desejada. ");
 			String str = scanner.nextLine().trim();
 			if (str.isEmpty()) {
-				System.out.println("Entrada vazia. Digite o numero de uma opcao.");
+				System.out.println("\n  [!] Entrada vazia. Digite o numero de uma opcao.");
 				continue;
 			}
 
 			int op;
 			try {
 				op = Integer.parseInt(str);
-			}
-			catch (NumberFormatException e) {
-				System.out.println("Entrada invalida. Digite apenas o numero da opcao.");
+			} catch (NumberFormatException e) {
+				System.out.println("\n  [!] Entrada invalida. Digite apenas o numero da opcao.");
 				continue;
 			}
 
-			if (op < 1 || op >= i) {
-				System.out.println("Opcao invalida. Escolha um numero entre 1 e " + options.size() + ".");
+			if (op < 1 || op >= options.size() + 1) {
+				System.out.println("\n  [!] Opcao invalida. Escolha um numero entre 1 e " + options.size() + ".");
 				continue;
 			}
 
