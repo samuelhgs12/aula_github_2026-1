@@ -18,7 +18,7 @@ public class Main {
 	public static void cadastrarCliente() {
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("\n== CADASTRO DE CLIENTE ==\n");
+		System.out.println("\n==== CADASTRO DE CLIENTE ====\n");
 		
 		System.out.print("Informe o nome do cliente: ");
 		String nome = scanner.nextLine();
