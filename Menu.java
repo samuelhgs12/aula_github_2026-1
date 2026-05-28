@@ -38,7 +38,7 @@ public class Menu {
 			}
 			if (op>=i){
 				System.out.println("Opcao errada!");
-				op=0;
+				op=0; 
 			}
 			else if (options.get(op - 1).equals("Conta")) {
 				Menu contaMenu = new Menu("Conta", Arrays.asList("Abrir Conta", "Encerrar Conta", "Consultar Conta"));
