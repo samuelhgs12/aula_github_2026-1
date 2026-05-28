@@ -18,6 +18,10 @@ public class Menu {
 		this.options = options;
 	}
 
+	public String getOption(int selection) {
+		return options.get(selection - 1);
+	}
+
 	public int getSelection() {
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
@@ -54,7 +58,6 @@ public class Menu {
 			}
 
 			return op;
-
 		}
 	}
 }

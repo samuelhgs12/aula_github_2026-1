@@ -8,11 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
         boolean continuar = true;
-
         while (continuar) {
             Menu mainMenu = new Menu("Menu Principal", Arrays.asList("Conta", "Cliente", "Operacoes", "Sair"));
             int opcao = mainMenu.getSelection();
-
             switch (opcao) {
                 case 1:
                     System.out.println("Opcao Conta selecionada");
@@ -29,19 +27,15 @@ public class Main {
                     break;
             }
         }
-
         System.out.println("Fim");
     }
 
     private static void cadastrarCliente() {
         System.out.println("\n=== CADASTRO DE CLIENTE ===\n");
-
         System.out.print("Informe o nome do cliente: ");
         String nome = scanner.nextLine();
-
         System.out.print("Informe o CPF do cliente: ");
         String cpf = scanner.nextLine();
-
         System.out.println("\n--- Cliente cadastrado com sucesso ---");
         System.out.println("Nome: " + nome);
         System.out.println("CPF: " + cpf);
