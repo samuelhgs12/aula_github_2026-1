@@ -61,7 +61,17 @@ public class Menu {
 				continue;
 			}
 
-			if (op < 1 || op >= options.size() + 1) {
+			if (op < 0) {
+				System.out.println("\n  [!] Numeros negativos nao sao permitidos. Escolha uma opcao a partir de 1.");
+				continue;
+			}
+
+			if (op < 1) {
+				System.out.println("\n  [!] Opcao invalida. Escolha uma opcao a partir de 1.");
+				continue;
+			}
+
+			if (op >= options.size() + 1) {
 				System.out.println("\n  [!] Opcao invalida. Escolha um numero entre 1 e " + options.size() + ".");
 				continue;
 			}
