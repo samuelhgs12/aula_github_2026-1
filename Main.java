@@ -7,28 +7,61 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Menu mainMenu = new Menu("Menu Principal", Arrays.asList("Conta", "Cliente", "Operacoes"));
+        boolean continuar = true;
 
-        int opcao = mainMenu.getSelection();
+        while (continuar) {
+            Menu mainMenu = new Menu("Menu Principal", Arrays.asList("Conta", "Cliente", "Operacoes", "Sair"));
+            int opcao = mainMenu.getSelection();
 
-        if (opcao == 3) {
-            Menu menuOperacoes = new Menu("Operacoes", Arrays.asList("Realizar Saque", "Realizar Deposito", "Consultar Saldo", "Voltar"));
-            int op = 0;
-            while (op != 4) {
-                op = menuOperacoes.getSelection();
-                if (op == 1) {
-					realizarSaque();
-					}
-                if (op == 2) {
-					realizarDeposito();
-					}
-                if (op == 3) {
-					consultarSaldo();
-					}
+            switch (opcao) {
+                case 1:
+                    System.out.println("Opcao Conta selecionada");
+                    break;
+                case 2:
+                    cadastrarCliente();
+                    break;
+                case 3:
+                    exibirMenuOperacoes();
+                    break;
+                case 4:
+                    System.out.println("\nEncerrando o programa...");
+                    continuar = false;
+                    break;
             }
         }
 
         System.out.println("Fim");
+    }
+
+    private static void cadastrarCliente() {
+        System.out.println("\n=== CADASTRO DE CLIENTE ===\n");
+
+        System.out.print("Informe o nome do cliente: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("Informe o CPF do cliente: ");
+        String cpf = scanner.nextLine();
+
+        System.out.println("\n--- Cliente cadastrado com sucesso ---");
+        System.out.println("Nome: " + nome);
+        System.out.println("CPF: " + cpf);
+    }
+
+    private static void exibirMenuOperacoes() {
+        Menu menuOperacoes = new Menu("Operacoes", Arrays.asList("Realizar Saque", "Realizar Deposito", "Consultar Saldo", "Voltar"));
+        int op = 0;
+        while (op != 4) {
+            op = menuOperacoes.getSelection();
+            if (op == 1) {
+                realizarSaque();
+            }
+            if (op == 2) {
+                realizarDeposito();
+            }
+            if (op == 3) {
+                consultarSaldo();
+            }
+        }
     }
 
     private static void realizarSaque() {
